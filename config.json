@@ -1,0 +1,5 @@
+{
+  "title": "JD Generator",
+  "provider": "ollama",
+  "model": "jd-generator"
+}

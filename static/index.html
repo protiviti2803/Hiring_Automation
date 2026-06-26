@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recruitment AI Portal</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+
+    <div class="chat-container">
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <h2>HR AI Builder</h2>
+            <button class="new-chat-btn" onclick="clearChat()">+ New Job Description</button>
+            <div class="footer-note">🔒 Local & Secure</div>
+        </div>
+
+        <!-- Chat Workspace -->
+        <div class="main-chat">
+            <div class="chat-history" id="chatHistory">
+                <!-- Initial welcoming message injected here -->
+                <div class="message bot-message">
+                    <div class="avatar">🤖</div>
+                    <div class="text">Give me the demands suggested by the clients for the jd.</div>
+                </div>
+            </div>
+
+            <!-- Input Box Tray -->
+            <div class="input-area">
+                <div class="input-wrapper">
+                    <textarea id="userInput" placeholder="Paste client demands here... (Shift + Enter for new line)"></textarea>
+                    <button id="sendBtn" onclick="sendDemands()">Send</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Trigger send on hitting Enter (without Shift)
+        document.getElementById("userInput").addEventListener("keydown", function(e) {
+            if (e.key === "Enter" && !e.shiftKey) {
+                e.preventDefault();
+                sendDemands();
+            }
+        });
+
+        async function sendDemands() {
+            const inputField = document.getElementById("userInput");
+            const chatHistory = document.getElementById("chatHistory");
+            const rawText = inputField.value.trim();
+
+            if (!rawText) return;
+
+            // 1. Render User Message Node
+            const userDiv = document.createElement("div");
+            userDiv.className = "message user-message";
+            userDiv.innerHTML = `<div class="avatar">👤</div><div class="text">${rawText.replace(/\n/g, '<br>')}</div>`;
+            chatHistory.appendChild(userDiv);
+            
+            inputField.value = ""; // Clear input
+            chatHistory.scrollTop = chatHistory.scrollHeight; // Scroll view down
+
+            // 2. Render Temporary Loading Bot Bubble
+            const loadingDiv = document.createElement("div");
+            loadingDiv.className = "message bot-message";
+            loadingDiv.innerHTML = `<div class="avatar">🤖</div><div class="text processing">Analyzing requirements and compiling standard JD...</div>`;
+            chatHistory.appendChild(loadingDiv);
+            chatHistory.scrollTop = chatHistory.scrollHeight;
+
+            try {
+                // 3. Post HTTP data to FastAPI backend pipeline
+                const response = await fetch('/generate', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ demands: rawText })
+                });
+
+                const result = await response.json();
+                
+                // 4. Swap loading text with the authentic generated content response
+                if (response.ok) {
+                    // Formats new lines and simple markdown style bulleting strings clean
+                    const cleanText = result.response.replace(/\n/g, "<br>").replace(/\*\*(.*?)\*\*/g, "<strong>$1</strong>");
+                    loadingDiv.querySelector(".text").innerHTML = cleanText;
+                } else {
+                    loadingDiv.querySelector(".text").innerText = "❌ Error processing request: " + result.detail;
+                }
+            } catch (err) {
+                loadingDiv.querySelector(".text").innerText = "❌ Failed to connect to local FastAPI server.";
+            }
+            chatHistory.scrollTop = chatHistory.scrollHeight;
+        }
+
+        function clearChat() {
+            document.getElementById("chatHistory").innerHTML = `
+                <div class="message bot-message">
+                    <div class="avatar">🤖</div>
+                    <div class="text">Give me the demands suggested by the clients for the jd.</div>
+                </div>`;
+        }
+    </script>
+</body>
+</html>

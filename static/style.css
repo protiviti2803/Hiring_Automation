@@ -1,0 +1,152 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+}
+
+body {
+    background-color: #212121;
+    color: #ececec;
+    height: 100vh;
+}
+
+.chat-container {
+    display: flex;
+    width: 100%;
+    height: 100vh;
+}
+
+/* Sidebar Dashboard Configuration */
+.sidebar {
+    width: 260px;
+    background-color: #171717;
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.sidebar h2 {
+    font-size: 1.1rem;
+    color: #fff;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.new-chat-btn {
+    background: transparent;
+    color: #fff;
+    border: 1px solid #4d4d4d;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    text-align: left;
+    transition: background 0.2s;
+}
+
+.new-chat-btn:hover {
+    background-color: #2a2a2a;
+}
+
+.footer-note {
+    font-size: 0.8rem;
+    color: #666;
+    text-align: center;
+}
+
+/* Main Panel Conversation Engine Workspace */
+.main-chat {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    background-color: #212121;
+}
+
+.chat-history {
+    flex: 1;
+    overflow-y: auto;
+    padding: 40px 10%;
+}
+
+/* Chat Message Bubbles Layout mapping */
+.message {
+    display: flex;
+    padding: 25px 20px;
+    border-radius: 8px;
+    margin-bottom: 15px;
+    max-width: 85%;
+    line-height: 1.6;
+}
+
+.bot-message {
+    background-color: #2f2f2f;
+    align-self: flex-start;
+    width: 100%;
+}
+
+.user-message {
+    background-color: #212121;
+    border: 1px solid #3d3d3d;
+    align-self: flex-end;
+}
+
+.avatar {
+    margin-right: 20px;
+    font-size: 1.3rem;
+}
+
+.text {
+    flex: 1;
+    font-size: 0.95rem;
+}
+
+.processing {
+    color: #888;
+    font-style: italic;
+}
+
+/* Base Input panel positioning tray setup */
+.input-area {
+    padding: 20px 10%;
+    background-color: #212121;
+}
+
+.input-wrapper {
+    position: relative;
+    background-color: #2f2f2f;
+    border: 1px solid #4d4d4d;
+    border-radius: 12px;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+}
+
+#userInput {
+    width: 100%;
+    height: 45px;
+    background: transparent;
+    border: none;
+    color: #fff;
+    resize: none;
+    outline: none;
+    font-size: 1rem;
+    padding-right: 60px;
+}
+
+#sendBtn {
+    position: absolute;
+    right: 15px;
+    bottom: 12px;
+    background-color: #ececec;
+    color: #000;
+    border: none;
+    padding: 6px 12px;
+    border-radius: 6px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+#sendBtn:hover {
+    background-color: #fff;
+}
