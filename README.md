@@ -1,6 +1,6 @@
 # HR AI Recruitment Portal
 
-A FastAPI-based web application that generates professional Job Descriptions (JDs) based on client demands using a local Ollama model.
+A FastAPI-based web application that generates professional Job Descriptions (JDs) based on client demands using the Groq Cloud API.
 
 ## Restructured Layout
 
@@ -12,8 +12,6 @@ A FastAPI-based web application that generates professional Job Descriptions (JD
 
 ## Installation and Setup
 
-Ensure you have [Ollama](https://ollama.com) installed and running on your machine.
-
 1. **Activate the Virtual Environment**:
    - On Windows (PowerShell):
      ```powershell
@@ -24,7 +22,13 @@ Ensure you have [Ollama](https://ollama.com) installed and running on your machi
      source .venv/bin/activate
      ```
 
-2. **Install/Manage Dependencies with `uv`**:
+2. **Configure API Keys**:
+   Create a `.env` file in the root directory and set your Groq API key:
+   ```env
+   GROQ_API_KEY=your_actual_api_key_here
+   ```
+
+3. **Install/Manage Dependencies with `uv`**:
    The virtual environment is pre-configured with dependencies. To install additional libraries, run:
    ```bash
    uv pip install <package_name>

@@ -28,13 +28,6 @@
 
             <!-- Input Box Tray -->
             <div class="input-area">
-                <div class="model-select-container">
-                    <label for="providerSelect">AI Provider:</label>
-                    <select id="providerSelect" class="provider-select">
-                        <option value="ollama">Local Ollama (Mistral)</option>
-                        <option value="groq">Groq Cloud API (Mistral/Llama)</option>
-                    </select>
-                </div>
                 <div class="input-wrapper">
                     <textarea id="userInput" placeholder="Paste client demands here... (Shift + Enter for new line)"></textarea>
                     <button id="sendBtn" onclick="sendDemands()">Send</button>
@@ -77,14 +70,11 @@
             chatHistory.scrollTop = chatHistory.scrollHeight;
 
             try {
-                const providerSelect = document.getElementById("providerSelect");
-                const selectedProvider = providerSelect ? providerSelect.value : "ollama";
-
                 // 3. Post HTTP data to FastAPI backend pipeline
                 const response = await fetch('/generate', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ demands: rawText, provider: selectedProvider })
+                    body: JSON.stringify({ demands: rawText })
                 });
 
                 const result = await response.json();

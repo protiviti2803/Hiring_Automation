@@ -1,13 +1,12 @@
 [project]
 name = "hr-ai-recruitment-portal"
 version = "0.1.0"
-description = "FastAPI web application for JD generation using local Ollama model"
+description = "FastAPI web application for JD generation using Groq API"
 readme = "README.md"
 requires-python = ">=3.10"
 dependencies = [
     "fastapi>=0.110.0",
     "pydantic>=2.0.0",
-    "ollama==0.4.7",
     "uvicorn>=0.28.0",
     "groq>=0.9.0",
     "python-dotenv>=1.0.1",

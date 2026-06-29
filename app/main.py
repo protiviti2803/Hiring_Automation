@@ -6,7 +6,6 @@ from fastapi import FastAPI, HTTPException
 from fastapi.staticfiles import StaticFiles
 from fastapi.responses import FileResponse
 from pydantic import BaseModel
-import ollama
 from dotenv import load_dotenv
 from groq import Groq
 
@@ -29,20 +28,7 @@ Keep the tone professional, attractive to candidates, and highly organized. Do n
 """
 
 
-# Auto-start Ollama if it's shut down
-def ensure_ollama_is_running():
-    try:
-        ollama.list()
-    except Exception:
-        print("Starting Ollama service automatically...")
-        if sys.platform == "win32":
-            subprocess.Popen(["cmd", "/c", "start", "/B", "ollama", "serve"],
-                             stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
-        else:
-            subprocess.Popen(["ollama", "serve"], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
-        time.sleep(4)
-
-ensure_ollama_is_running()
+# Ollama service check removed as generation relies solely on Groq
 
 # Mount the 'static' folder to serve HTML/CSS/JS assets
 app.mount("/static", StaticFiles(directory=os.path.join(BASE_DIR, "static")), name="static")
@@ -79,7 +65,6 @@ def generate_jd_with_groq(prompt: str) -> str:
 # Data format structure for receiving user web prompts
 class DemandRequest(BaseModel):
     demands: str
-    provider: str = "ollama"
 
 @app.get("/")
 def read_root():
@@ -91,21 +76,8 @@ def generate_jd(data: DemandRequest):
     if not data.demands.strip():
         raise HTTPException(status_code=400, detail="Demands payload cannot be empty")
     
-    provider = data.provider.lower()
-    if provider == "groq":
-        try:
-            response_text = generate_jd_with_groq(data.demands)
-            return {"response": response_text}
-        except Exception as e:
-            raise HTTPException(status_code=500, detail=str(e))
-    else:
-        try:
-            # Request data from your custom local Ollama model
-            response = ollama.generate(
-                model='mistral',
-                prompt=data.demands,
-                stream=False # Keep false for stable payload delivery to the web UI
-            )
-            return {"response": response['response']}
-        except Exception as e:
-            raise HTTPException(status_code=500, detail=str(e))
+    try:
+        response_text = generate_jd_with_groq(data.demands)
+        return {"response": response_text}
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
