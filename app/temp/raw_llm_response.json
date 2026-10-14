@@ -1,0 +1,118 @@
+Here's a thinking process:
+
+1.  **Analyze the Request thoroughly:**
+   - I need to process a raw candidate CV and a target Job Description (JD).
+   - Output must be a structured JSON profile.
+   - There are strict formatting, highlighting, and content rules.
+   - I need to extract name, strip designations/experience brackets, etc.
+   - Create professional summary (100-120 words, first sentence bold highlights, rest plain).
+   - Industry expertise (2-4 domains).
+   - Major project experience (up to 6 projects, specific format, bullet density rules).
+   - Areas of expertise (exactly 20 keywords, short, version-retaining).
+   - Education (degree titles only).
+   - Final validation checklist.
+
+2.  **Step-by-step Processing:**
+
+   **Step 1: Candidate Name Sanitization**
+   Raw CV starts with: "Saurabh Tiwari"
+   Then "Business Analyst Lead" etc.
+   I must extract ONLY "Saurabh Tiwari". Strip "Business Analyst Lead", experience brackets, etc.
+   The raw text: "Saurabh Tiwari \nBusiness Analyst Lead \n+91-8696242412 | ..."
+   So name = "Saurabh Tiwari"
+
+   **Step 2: Parse the CV for relevant data**
+   Let me list out what I need:
+
+   **Professional Summary:**
+   - 100-120 words
+   - Starts with: "Saurabh Tiwari has X years of experience..."
+   - First sentence: bold the most critical domain terms using **double asterisks**. Example given: "**Gaurav Tripathi** has **10 years** of experience as a **Senior Business Analyst** specialising in **Credit Risk** and **Regulatory Capital** within the **Banking and Financial Services** industry."
+   - So I need to pick critical terms from the CV: role, domain, sector. The candidate is a Business Analyst Lead with 13 years experience in Banking, Fintech, Technology Operations, Retail Banking, Digital Journeys, Customer Onboarding, India Stack, etc.
+   - First sentence must include **bold** around the most critical terms. I'll structure: "Saurabh Tiwari has **13 years** of experience as a **Business Analyst Lead** specialising in **Retail Banking** and **Digital Transformation** within the **Banking and Financial Services** industry."
+   - Wait, the example shows: "**Gaurav Tripathi** has **10 years** of experience as a **Senior Business Analyst** specialising in **Credit Risk** and **Regulatory Capital** within the **Banking and Financial Services** industry."
+   - The bolding is on the name, years, role, specialisation areas, sector. But the constraint says: "The FIRST SENTENCE ONLY of the 'professional_summary' field (the opening line starting with the candidate's name and years of experience). All remaining sentences in 'professional_summary' must be plain text with NO double asterisks."
+   - And: "Apply double asterisks (**keyword**) ONLY in the following two places: 1. The FIRST SENTENCE ONLY of the 'professional_summary' field... 2. The 'project_title' string inside each entry of 'major_project_experience'."
+   - So in the first sentence, I can have multiple **bold** highlights. I need to decide what's "most critical". Looking at the JD: "Business Analyst / Consultant". So the role is Business Analyst/Consultant. The candidate has 13 years, Banking, Fintech, Digital Transformation, Retail Banking, Digital Journeys, India Stack, etc.
+   - I'll make the first sentence: "Saurabh Tiwari has **13 years** of experience as a **Business Analyst** specialising in **Retail Banking**, **Digital Journeys**, and **India Stack** integration within the **Banking and Financial Services** industry."
+   - That seems balanced. The name is not bolded in the example? Wait, the example starts with "**Gaurav Tripathi** has **10 years**...". So the name IS bolded. The constraint says: "Extract ONLY the candidate's actual First Name and Last Name." But in the summary, the name appears. The example bolded the name. I'll bold the name as per the example pattern, but the constraint about double asterisks says they appear ONLY in first sentence of professional_summary and project_titles. So I can bold the name and other terms in the first sentence.
+   - Let me re-read: "Apply double asterisks (**keyword**) ONLY in the following two places: 1. The FIRST SENTENCE ONLY of the 'professional_summary' field (the opening line starting with the candidate's name and years of experience). All remaining sentences in 'professional_summary' must be plain text with NO double asterisks."
+   - And the example: "**Gaurav Tripathi** has **10 years** of experience as a **Senior Business Analyst** specialising in **Credit Risk** and **Regulatory Capital** within the **Banking and Financial Services** industry."
+   - So yes, I can bold multiple things in the first sentence, including the name. I'll follow that pattern.
+   - First sentence: "**Saurabh Tiwari** has **13 years** of experience as a **Business Analyst** specialising in **Retail Banking**, **Digital Transformation**, and **India Stack** within the **Banking and Financial Services** industry."
+   - Now, the second sentence and beyond must be plain text, no bold. I need to describe breadth of skills, tools, methodologies, stakeholder experience in flowing plain prose. Total 100-120 words.
+
+   Let me calculate words for the summary. I'll write it carefully.
+
+   Target: 100-120 words total for the professional summary.
+
+   Let draft the summary:
+   Sentence 1 (bolded terms): "**Saurabh Tiwari** has **13 years** of experience as a **Business Analyst** specialising in **Retail Banking**, **Digital Transformation**, and **India Stack** integration within the **Banking and Financial Services** industry."
+   Now plain sentences after that, no bold. I need to add enough to reach 100-120 words total.
+
+   Let me count words sentence 1:
+   **Saurabh Tiwari** (2 words, but with formatting, count as Saurabh Tiwari = 2)
+   has (1) = 3
+   **13 years** (2) = 5
+   of (1) = 6
+   experience (1) = 7
+   as (1) = 8
+   a (1) = 9
+   **Business Analyst** (2) = 11
+   specialising (1) = 12
+   in (1) = 13
+   **Retail Banking**, (2, but comma, count as Retail Banking = 2) = 15
+   **Digital Transformation**, (3?) actually Digital Transformation = 2 words = 17
+   and (1) = 18
+   **India Stack** (2) = 20
+   within (1) = 21
+   the (1) = 22
+   **Banking and Financial Services** (4? Banking =1, and=1, Financial=1, Services=1 =4) = 26
+   industry. (1) = 27
+
+   So sentence 1 is about 27 words.
+
+   I need 100-120 total, so I need 73-93 more words in plain text sentences.
+
+   Let me write plain sentences that cover: skills, tools, methodologies, industries, achievements, stakeholder management, etc. Must be 100-120 total.
+
+   I'll draft the full summary in plain text first, then add bold only to first sentence.
+
+   Draft full summary (all plain, then I'll bold the first sentence's keywords):
+   "Saurabh Tiwari has 13 years of experience as a Business Analyst specialising in Retail Banking, Digital Transformation, and India Stack integration within the Banking and Financial Services industry. Throughout a distinguished career spanning leading institutions including AU Small Finance Bank, HDFC Bank, and ICICI Bank, he has driven large-scale digital transformation initiatives, modernizing core banking processes, enhancing customer onboarding journeys, and enabling API-first architectures. He possesses deep expertise in retail lending, credit risk automation, regulatory compliance, and digital product lifecycle management. Saurabh has successfully led cross-functional teams to deliver end-to-end digital lending platforms, integrate India Stack components such as Aadhaar, eSign, eMandate, and Account Aggregator frameworks, and implement One Bank One KYC strategies that unified customer verification across diverse retail products. His proficiency extends to Business Rule Engine management, FICO integrations, regression testing, and operational excellence frameworks, significantly reducing manual underwriting effort and improving TAT. He has extensive experience collaborating with product, risk, credit, and operations stakeholders to align technical delivery with business objectives, while leveraging Agile methodologies, SDLC governance, and data-driven KPIs to enhance system availability, security, and customer experience across web and mobile channels."
+
+   Now count words. Let me count carefully. I'll do it manually or approximate, but I need to be precise at the end. I'll write it in a way I can count. Actually, I'll write the summary in the final JSON, but I need to ensure 100-120 words. I'll count later.
+
+   Better: I'll construct the summary programmatically in my thought, then count. Since I'm the AI, I can generate and count.
+
+   Let me rewrite the summary more concisely, aiming for exactly ~110 words.
+
+   I'll start with the bold first sentence, then add plain sentences.
+
+   First sentence (bold): "**Saurabh Tiwari** has **13 years** of experience as a **Business Analyst** specialising in **Retail Banking**, **Digital Transformation**, and **India Stack** within the **Banking and Financial Services** industry."
+
+   Now plain sentences. I need to add content about his experience, skills, projects essence, but in plain prose. No bold.
+
+   Let me write:
+   "Throughout a 13-year career spanning Banking, Fintech and Technology Operations, he has specialized in Retail Banking and Digital Journeys, with proven proficiency in Customer Onboarding Digitization, CASA for NTB/ETB, and 'One Bank One KYC' frameworks. He has orchestrated the India Stack (Aadhaar/UIDAI, eSign, eMandate, Account Aggregator) to scale digital lending and financial ecosystems across APK and Web platforms. His expertise includes API integration, Jira/Confluence, SQL, requirement gathering, sprint planning, LMS, customer journey mapping, and agile methodology execution. He has led cross-functional collaborations across Product, Risk, Credit and Operations to deliver large-scale lending initiatives including MSME, LAP, Mudra and Home Loans, while managing Business Rule Engine and FICO integrations to automate credit policies and reduce manual underwriting by 40%. Additionally, he has driven operational excellence through knowledge transfer, functional documentation, and regulatory compliance with RBI, SEBI and PRA standards, delivering executive dashboards and real-time KPI tracking to stakeholders."
+
+   Now let me count words for the entire summary.
+
+   I'll count sentence by sentence.
+
+   Sentence 1 (bold, but count words without formatting markers):
+   "Saurabh Tiwari has 13 years of experience as a Business Analyst specialising in Retail Banking, Digital Transformation, and India Stack within the Banking and Financial Services industry."
+
+   Count:
+   Saurabh(1) Tiwari(2) has(3) 13(4) years(5) of(6) experience(7) as(8) a(9) Business(10) Analyst(11) specialising(12) in(13) Retail(14) Banking,(15) Digital(16) Transformation,(17) and(18) India(19) Stack(20) within(21) the(22) Banking(23) and(24) Financial(25) Services(26) industry(27).
+
+   27 words.
+
+   Sentence 2: "Throughout a 13-year career spanning Banking, Fintech and Technology Operations, he has specialized in Retail Banking and Digital Journeys, with proven proficiency in Customer Onboarding Digitization, CASA for NTB/ETB, and 'One Bank One KYC' frameworks."
+
+   Count:
+   Throughout(1) a(2) 13-year(3) career(4) spanning(5) Banking,(6) Fintech(7) and(8) Technology(9) Operations,(10) he(11) has(12) specialized(13) in(14) Retail(15) Banking(16) and(17) Digital(18) Journeys,(19) with(20) proven(21) proficiency(22) in(23) Customer(24) Onboarding(25) Digitization,(26) CASA(27) for(28) NTB/ETB,(29) and(30) 'One(31) Bank(32) One(33) KYC'(34) frameworks(35).
+
+   35 words. Cumulative: 27+35=62.
+
+   Sentence 3: "He has orchestrated the India Stack (Aadhaar/

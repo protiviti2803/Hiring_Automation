@@ -1,0 +1,41 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(where python *)",
+      "Bash(where python3 *)",
+      "Bash(where py *)",
+      "Bash(.venv/Scripts/pip install *)",
+      "Bash(cmd.exe *)",
+      "Bash(python *)",
+      "Bash(C:/Users/I779148/AppData/Local/Programs/Python/Python313/python.exe *)",
+      "Bash(curl -s http://127.0.0.1:8000 -o /dev/null -w \"%{http_code}\")",
+      "Bash(pkill -f uvicorn)",
+      "Bash(curl -s http://127.0.0.1:8000/api/roles)",
+      "Bash(curl -s http://127.0.0.1:8001/api/roles)",
+      "Bash(curl -s http://127.0.0.1:8001 -o /dev/null -w \"%{http_code}\")",
+      "Bash(.venv/Scripts/uvicorn.exe app.main:app --reload --host 0.0.0.0 --port 8000)",
+      "Bash(.venv/Scripts/python.exe -m uvicorn app.main:app --reload --host 0.0.0.0 --port 8000)",
+      "Bash(C:/Users/I779148/Downloads/HR_Demo/HR_Demo/.venv/Scripts/python.exe --version)",
+      "Bash(.venv/Scripts/python.exe -m pip install --force-reinstall pydantic pydantic-core)",
+      "Bash(curl *)",
+      "Bash(.venv/Scripts/python.exe -m pip install watchfiles -q)",
+      "Bash(taskkill /F /IM python.exe /T)",
+      "Bash(.venv/Scripts/python.exe -m uvicorn app.main:app --reload --reload-exclude \"*__pycache__*\" --reload-exclude \"*.pyc\" --host 0.0.0.0 --port 8000)",
+      "Bash(grep -o '\"\\\\/api[^\"]*\"')",
+      "Bash(netstat -ano)",
+      "Bash(taskkill /PID 10176 /F)",
+      "Bash(taskkill /PID 25272 /F)",
+      "Bash(taskkill /PID 17188 /F)",
+      "Bash(cmd //c \"taskkill /PID 10176 /F & taskkill /PID 25272 /F & taskkill /PID 17188 /F\")",
+      "Bash(.venv/Scripts/python.exe -c \"import app.main; routes = [r.path for r in app.main.app.routes]; print\\('\\\\n'.join\\(r for r in routes if 'api' in r\\)\\)\")",
+      "Bash(cmd //c \"taskkill /PID 10176 /F & taskkill /PID 10096 /F & taskkill /PID 25272 /F & taskkill /PID 17188 /F & taskkill /PID 13016 /F\")",
+      "Bash(cmd *)",
+      "Bash(.venv/Scripts/python.exe -m uvicorn app.main:app --reload --reload-exclude \"*__pycache__*\" --reload-exclude \"*.pyc\" --host 0.0.0.0 --port 8001)",
+      "Bash(powershell -Command \"Get-Process -Name python | Select-Object Id, StartTime | Sort-Object StartTime\")",
+      "Skill(run)",
+      "Bash(uvicorn app.main:app --reload --host 0.0.0.0 --port 8000)",
+      "Bash(echo \"PID: $!\")",
+      "Bash(.venv/Scripts/uvicorn.exe --version)"
+    ]
+  }
+}

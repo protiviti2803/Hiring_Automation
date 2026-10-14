@@ -1,0 +1,73 @@
+{
+  "candidate_name": "Saurabh Tiwari",
+  "professional_summary": "**Saurabh Tiwari** has **13 years** of experience as a **Business Analyst Lead** specializing in **Digital Lending**, **Retail Banking**, and **Fintech** within the **Banking and Financial Services** industry. He has led end‑to‑end digital transformation projects, orchestrating India Stack integrations, API‑driven LOS implementations, and Account Aggregator frameworks to achieve paperless loan processing and unified KYC. Proficient in API design, Jira, Confluence, SQL, and agile methodologies, he collaborates with product, risk, credit and operations teams to translate business requirements into functional specifications and automated rule‑engine solutions. His experience includes managing BRE and FICO integrations, overseeing regression testing, driving stakeholder workshops, and delivering training programs that enhance underwriting efficiency by up to 40 percent.",
+  "industry_expertise": [
+    "Retail Banking",
+    "Digital Lending",
+    "Fintech"
+  ],
+  "major_project_experience": [
+    {
+      "project_title": "**End‑to‑End Digital Lending Transformation (Rapid LOS)**",
+      "role": "Business Analyst Lead",
+      "bullets": [
+        "Developed and integrated a FICO Business Rule Engine into the Loan Origination System, automating credit decisioning and reducing manual underwriting effort by 40%.",
+        "Designed API bridges between the LOS and Core Banking System, enabling real‑time data exchange for Micro Business and Home Loan products.",
+        "Delivered comprehensive functional documentation and led cross‑functional workshops with product, risk, and operations teams to ensure seamless deployment and regulatory compliance."
+      ]
+    },
+    {
+      "project_title": "**Unified “One Bank One KYC” & Onboarding Ecosystem**",
+      "role": "Business Analyst Lead",
+      "bullets": [
+        "Engineered a frictionless CASA onboarding journey for NTB and ETB customers, incorporating Account Aggregator and CKYC automation to eliminate duplicate documentation.",
+        "Implemented UIDAI face recognition and Aadhaar masking workflows, achieving 100% regulatory compliance for digital identity verification.",
+        "Coordinated stakeholder alignment across retail, credit, and compliance units, resulting in a single reusable KYC profile that accelerated customer acquisition."
+      ]
+    },
+    {
+      "project_title": "**India Stack Integration & Compliance Automation**",
+      "role": "Business Analyst Lead",
+      "bullets": [
+        "Integrated eStamping, eSign, and e‑Mandate (e‑NACH) services to create a fully paperless loan execution process, cutting operational costs markedly.",
+        "Automated Aadhaar redaction and consent‑based data fetching via the Account Aggregator framework, ensuring adherence to RBI and data‑privacy standards.",
+        "Produced training series and functional specifications that empowered credit and underwriting teams to adopt the new zero‑paper workflow."
+      ]
+    },
+    {
+      "project_title": "**Finacle International Application Ownership – ICICI Bank**",
+      "role": "Deputy Manager / Business Analyst Grade 2",
+      "bullets": [
+        "Managed Finacle deployments across multiple international geographies, ensuring system stability and alignment with regional retail banking requirements.",
+        "Designed and optimized APIs for global remittance and digital payment flows, improving transaction throughput and meeting cross‑border regulatory standards.",
+        "Led ITIL‑based lifecycle management, overseeing incident, problem, and change processes to maintain 99.9% system availability."
+      ]
+    }
+  ],
+  "areas_of_expertise": [
+    "API",
+    "Jira",
+    "Confluence",
+    "SQL",
+    "Agile Methodology",
+    "SDLC",
+    "LOS",
+    "Business Rule Engine",
+    "FICO",
+    "Account Aggregator",
+    "UIDAI",
+    "eSign",
+    "eStamping",
+    "Digital Lending",
+    "Retail Banking",
+    "Fintech",
+    "KYC",
+    "India Stack",
+    "Regression Testing",
+    "Stakeholder Management"
+  ],
+  "education": [
+    "PG Diploma | Banking",
+    "B.Tech / B.E. | Electronics and Telecommunication Engineering"
+  ]
+}
